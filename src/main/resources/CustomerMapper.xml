@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pwy.spring5.model.dao.CustomerDAO">
+    <insert id="insert" parameterType="com.pwy.spring5.model.dto.CustomerDTO">
+        insert into JSP_CUSTOMER
+        values (#{code}, #{customerName})
+    </insert>
+
+    <select id="selectAll" resultType="com.pwy.spring5.model.dto.CustomerDTO">
+        select *
+        from JSP_CUSTOMER
+    </select>
+</mapper>
+ 

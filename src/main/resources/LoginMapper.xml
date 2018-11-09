@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pwy.spring5.model.dao.LoginDAO">
+    <select id="login" parameterType="com.pwy.spring5.model.dto.LoginDTO" resultType="com.pwy.spring5.model.dto.LoginDTO">
+        select * from JSP_LOGIN where ID=#{id} and PASSWORD=#{password}
+    </select>
+</mapper> 
+ 
