@@ -24,6 +24,7 @@ class main {
 
     @RequestMapping("/")
     fun goToHome(): ModelAndView {
+        log.info("경로요청 : [/] -> /WEB-INF/view/home.jsp")
         return ModelAndView("home")
     }
 
