@@ -23,9 +23,9 @@ class main {
     lateinit var myService: MyService
 
     @RequestMapping("/")
-    fun goToHome(): ModelAndView {
+    fun goToHome(): String {
         log.info("경로요청 : [/] -> /WEB-INF/view/home.jsp")
-        return ModelAndView("home")
+        return "home"
     }
 
     @RequestMapping("/{pathName:[a-zA-Z]+}")
@@ -103,7 +103,7 @@ class main {
     fun goToProductUpdate(@PathVariable productCode: String): ModelAndView {
         return ModelAndView("productUpdate").also {
             val item = myService.selectProductByCode(productCode.toLong())
-            it.addObject("dto", item)
+            it.addObject("dto", item as  Any)
         }
     }
 
@@ -125,7 +125,7 @@ class main {
 
         return ModelAndView("productFind").also {
             val list = myService.productFind(type, keyword)
-            it.addObject("list", list)
+            it.addObject("list", list as  Any)
         }
     }
 }

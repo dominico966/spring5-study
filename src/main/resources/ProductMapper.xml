@@ -26,61 +26,62 @@
     <resultMap id="JoinCustomerProductDTO" type="com.pwy.spring5.model.dto.JoinCustomerProductDTO" autoMapping="false">
         <constructor>
             <arg name="customer" resultMap="CustomerDTO" column="{CODE, CUSTOMERNAME}"/>
-            <arg name="product" resultMap="ProductDTO" column="{CUSTOMERCODE, PRODUCTNAME, PRODUCTCODE, IMAGEPATH, QUANTITY, STANDARD}"/>
+            <arg name="product" resultMap="ProductDTO"
+                 column="{CUSTOMERCODE, PRODUCTNAME, PRODUCTCODE, IMAGEPATH, QUANTITY, STANDARD}"/>
         </constructor>
     </resultMap>
     <!--result map end-->
 
     <insert id="insert" parameterType="com.pwy.spring5.model.dto.ProductDTO">
         insert into JSP_PRODUCT
-        values (#{customerCode}, #{productName}, #{productName}, #{productCode}, #{quantity}, #{standard})
+                values (#{customerCode}, #{productName}, #{productName}, #{productCode}, #{quantity}, #{standard})
     </insert>
 
     <select id="selectAll" resultMap="ProductDTO">
         select *
-        from JSP_PRODUCT
+                from JSP_PRODUCT
     </select>
 
     <select id="selectAllForList" resultMap="JoinCustomerProductDTO">
         select JSP_CUSTOMER.*, JSP_PRODUCT.*
-        from JSP_PRODUCT
-                 join JSP_CUSTOMER on JSP_PRODUCT.CUSTOMERCODE = JSP_CUSTOMER.CODE
+                from JSP_PRODUCT
+                join JSP_CUSTOMER on JSP_PRODUCT.productCode = JSP_CUSTOMER.CODE
     </select>
 
     <select id="selectByCode" parameterType="long" resultMap="JoinCustomerProductDTO">
         select JSP_CUSTOMER.CUSTOMERNAME, JSP_CUSTOMER.CODE, JSP_PRODUCT.*
         from JSP_PRODUCT
-                 join JSP_CUSTOMER on JSP_PRODUCT.CUSTOMERCODE = JSP_CUSTOMER.CODE
-        where JSP_PRODUCT.PRODUCTCODE = #{productCode}
+                 join JSP_CUSTOMER on JSP_PRODUCT.productCode = JSP_CUSTOMER.CODE
+        where JSP_PRODUCT.customerCode = #{productCode}
     </select>
 
     <delete id="deleteByCode" parameterType="long">
         delete
-        from JSP_PRODUCT
-        where PRODUCTCODE = #{productCode}
+                from JSP_PRODUCT
+                where customerCode = #{productCode}
     </delete>
 
     <update id="update" parameterType="com.pwy.spring5.model.dto.ProductDTO">
         update JSP_PRODUCT
         set PRODUCTNAME = #{productName},
-            IMAGEPATH   = #{imagePath},
-            QUANTITY    = #{quantity},
-            STANDARD    = #{productCode}
-        where PRODUCTCODE=#{productCode}
+        IMAGEPATH   = #{imagePath},
+        QUANTITY    = #{quantity},
+        STANDARD    = #{productCode}
+        where customerCode = #{productCode}
     </update>
 
     <select id="findByCustomerName" parameterType="string" resultMap="JoinCustomerProductDTO">
         select JSP_CUSTOMER.*, JSP_PRODUCT.*
-        from JSP_PRODUCT
-                 join JSP_CUSTOMER on JSP_PRODUCT.CUSTOMERCODE = JSP_CUSTOMER.CODE
-        where JSP_CUSTOMER.CUSTOMERNAME like #{keyword}
+                from JSP_PRODUCT
+                join JSP_CUSTOMER on JSP_PRODUCT.productCode = JSP_CUSTOMER.CODE
+                where JSP_CUSTOMER.CUSTOMERNAME like #{keyword}
     </select>
 
     <select id="findByProductName" parameterType="string" resultMap="JoinCustomerProductDTO">
         select JSP_CUSTOMER.*, JSP_PRODUCT.*
-        from JSP_PRODUCT
-                 join JSP_CUSTOMER on JSP_PRODUCT.CUSTOMERCODE = JSP_CUSTOMER.CODE
-        where JSP_PRODUCT.PRODUCTNAME like #{keyword}
+                from JSP_PRODUCT
+                join JSP_CUSTOMER on JSP_PRODUCT.productCode = JSP_CUSTOMER.CODE
+                where JSP_PRODUCT.PRODUCTNAME like #{keyword}
     </select>
 </mapper>
  

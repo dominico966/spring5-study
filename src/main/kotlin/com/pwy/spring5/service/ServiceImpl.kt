@@ -38,7 +38,7 @@ class ServiceImpl : MyService {
 
     override fun login(id: String, password: String): Boolean {
 //        return loginDAO.login(id, password)
-        return loginDAO.login(LoginDTO(id, password)) != null
+        return loginDAO.login(LoginDTO(id, password)) == null
     }
 
     override fun productList(): List<JoinCustomerProductDTO> {

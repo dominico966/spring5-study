@@ -1,8 +1,0 @@
-<component name="libraryTable">
-  <library name="com.oracle:ojdbc6:11.2.0" type="repository">
-    <properties maven-id="com.oracle:ojdbc6:11.2.0" />
-    <CLASSES />
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
